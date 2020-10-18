@@ -58,7 +58,7 @@ function ll(){
     do{
       console.log(`${curr.element} -> `)
       curr = curr.next;
-    }while(curr.next != null);
+    }while(curr != null);
   }
 
   // Delete a particular item
