@@ -1,7 +1,8 @@
 // Convert infix to postfix 
 
 // Enter the expression here.
-let expr = '2 + 3';
+// let expr = '2 + 3';
+let expr = prompt('Enter the infix expression')
 
 
 function stack(){
