@@ -3,6 +3,7 @@ function hashTable(){
   this.simpleHash = simpleHash;   // simple hash function
   this.showDistro = showDistro;   // display data from hash table
   this.put = put;   // put data in hash table
+  this.get = get; // retrieve data from the hash table
 
   // Choice of hash function depends on datatype of key
   function simpleHash(data){
@@ -21,6 +22,10 @@ function hashTable(){
   function put(data){
     let index = simpleHash(data);
     this.table[index] = data;
+  }
+
+  function get(key){
+  	return this.table[this.simpleHash(key)]
   }
 
   function showDistro(){
