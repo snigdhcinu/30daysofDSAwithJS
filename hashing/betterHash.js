@@ -39,6 +39,10 @@ function hashTable(){
     this.table[index] = data;
   }
 
+  function get(key){
+    return this.table[this.betterHash(key)]
+  }
+
   function showDistro(){
     let n = 0;
     for(let i = 0; i < this.table.length ; i++){
