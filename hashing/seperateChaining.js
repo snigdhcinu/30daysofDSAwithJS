@@ -1,8 +1,9 @@
-// Implementing handling collision using seperate chaining approach
+// Implementing handling collision using linear probing approach
 // Note that with JS we do not need to use new Array() approach, however so that we have a general understanding of what we are doing, and do the same across all languages, that is why we have used this approach.
 
 function hashTable(){
   this.table = new Array(255);  // dataStore
+  this.values = new Array(255)
   this.hash = hash;   // simple hash function
   this.showDistro = showDistro;   // display data from hash table
   this.put = put;   // put data in hash table
@@ -26,35 +27,31 @@ function hashTable(){
     }
   }
 
-  function put(data){
-    let index = hash(data); 
-    let i = 0;
-
-    while(this.table[index][i] !== undefined){
-      i+=1;
-    }
-    if(i == this.table[index].length) {
-      this.table[index][i].push(data);
+  function put(key,data){
+    let pos = this.hash(key);
+    if(this.table[pos] == undefined){
+      this.table[pos] = key;
+      this.values[pos] = data;
     }else{
-      this.table[index][i] = data;
+      while (this.table[pos] !== undefined) {
+        pos += 1;
+      }
+      this.table[pos] = key;
+      this.values[pos] = data;
     }
-
   }
 
   function get(key){
-  	let index = this.hash(key);
-    let i = 0;
-
-    // Searching algo on this.table[index] array, scope of improvement in implementation.
-    while(this.table[index][i] !== key){
-      i+=1;
+    let hash = -1;
+    hash = this.hash(key);
+    if(hash > -1){
+      for(let i = hash; this.table[hash] !== undefined ; i++){
+        if(this.table[i] == key){
+          return this.values[i];
+        }
+      }
     }
-    if(i == this.table[index].length){
-      console.log(`${key} not present in the hashTable`)
-    }
-    else{
-      return this.table[index][i]
-    }
+    return undefined;
   }
 
   function showDistro(){
