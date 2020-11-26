@@ -58,6 +58,9 @@ function BST(){
       console.log(node.show());
       inorder(node.right);
     }
+    else{
+      return ;
+    }
   }
   function preorder(node){
     if(node != null){
@@ -65,12 +68,18 @@ function BST(){
       preorder(node.left);
       preorder(node.right);
     }
+    else{
+      return ;
+    }
   }
   function postorder(node){
     if(node != null){
       postorder(node.left);
       postorder(node.right);
       console.log(node.show());
+    }
+    else{
+      return ;
     }
     
   }
@@ -83,11 +92,13 @@ for (let i = 0; i< 10 ; i++){
 }
 // console.log(tree.root)
 
+    // Uncomment below lines of codes to see the traversal methods.
+
 // console.log('inorder traversal -- ')
 // tree.inorder(tree.root)
 
 // console.log('--preorder traversal--')
 // tree.preorder(tree.root);
 
-console.log('--postorder traversal--');
-tree.postorder(this.root);
+// console.log('--postorder traversal--');
+// tree.postorder(this.root);
