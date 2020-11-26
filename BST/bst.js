@@ -23,8 +23,9 @@ function BST(){
     if(this.root == null ){
       this.root = newNode;
     }else{
+      let curr = this.root;
+      let parent;
       while(1){
-        let curr = newNode
         let parent = curr;
         if(data < curr.data){
           // goto left child
