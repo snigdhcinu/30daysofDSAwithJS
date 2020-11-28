@@ -26,6 +26,9 @@ function BST(){
   this.max = max
   this.find = find;
 
+  // Deleting newNode
+  this.remove = remove;
+
   function insert(data){
 
     let newNode = new node(data);
@@ -108,7 +111,7 @@ function BST(){
   }
 
   function find(data){
-    let newNode = new node(data);
+    // let newNode = new node(data);
     let curr = this.root;
     while(curr.data != data){
       if(data < curr.data){
@@ -122,6 +125,49 @@ function BST(){
       }
     }
     return [`${data} is present in the bst`,curr];
+  }
+
+
+  // Deletion method definition
+
+  function remove(data){
+    let target = removeNode(this.root,data)
+    console.log(`${target.data} was deleted from the BST`)
+  }
+
+  function removeNode(node,data){
+    if(node == null){
+      return null;
+    }
+    if(data == node.data){
+      // node has no children
+      if(node.left == null && node.right == null){
+        return null;
+      }
+
+      // node has one child
+      if(node.left == null){
+        return node.right;
+      }
+      if(node.right == null){
+        return node.left;
+      }
+
+      // node has two child
+      
+      let tempNode = this.min(node.right);
+      node.data = tempNode.data;
+      node.right = removeNode(node.right,tempNode.data)
+      return node;
+    }
+    if(data < node.data){
+      node.left = removeNode(node.left,data);
+      return node;
+    }
+    else{
+      node.right = removeNode(node.right,data);
+      return node;
+    }
   }
 }
 
@@ -153,4 +199,8 @@ for (let i = 0; i< 10 ; i++){
 
 // console.log('Search node with a specified value')
 // let target = tree.find(7);
+// console.log(target)
+
+// console.log('Delete a particular node')
+// let target = tree.remove(4);
 // console.log(target)
